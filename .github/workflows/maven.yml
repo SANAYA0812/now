@@ -3,7 +3,7 @@
 
 - name: Add MariaDB APT repository
   apt_repository:
-    repo: "{{ item }}"
+    repo: "{{ now }}"
     state: present
   with_items:
     - deb [arch=amd64,arm64,ppc64el] http://nyc2.mirrors.digitalocean.com/mariadb/repo/10.6/ubuntu focal main
