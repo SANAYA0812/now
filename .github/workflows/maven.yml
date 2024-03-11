@@ -1,0 +1,21 @@
+---
+# tasks/main.yml
+
+- name: Add MariaDB APT repository
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    - deb [arch=amd64,arm64,ppc64el] http://nyc2.mirrors.digitalocean.com/mariadb/repo/10.6/ubuntu focal main
+    - deb-src http://nyc2.mirrors.digitalocean.com/mariadb/repo/10.6/ubuntu focal main
+
+- name: Install MariaDB package
+  apt:
+    name: mariadb-server
+    state: present
+
+- name: Start and enable MariaDB service
+  service:
+    name: mariadb
+    enabled: yes
+    state: started
